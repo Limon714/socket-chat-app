@@ -9,16 +9,14 @@ const io = new Server(expressServer);
 io.on('connection', function (socket) {
     console.log("New user connected")
 
-    socket.on('disconnect', function () {
-        console.log("Disconnected")
-    })
+    // socket.on('disconnect', function () {
+    //     console.log("Disconnected")
+    // })
     // setTimeout(function () {
     //     socket.emit('MyStyle', 'Learn with Limon')
     // }, 4000)
 
-    socket.on('message', function (msg) {
-        console.log(msg)
-    })
+    io.sockets.emit('MyEvent', "Hello Limon")
     
 });
 
