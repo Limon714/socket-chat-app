@@ -12,12 +12,14 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log("Disconnected")
     })
+    // setTimeout(function () {
+    //     socket.emit('MyStyle', 'Learn with Limon')
+    // }, 4000)
 
-    setInterval(function () {
-        let t = new Date();
-        let d = t.getTime();
-        socket.send("Changes : " + d + "<br>")
-    }, 500)
+    socket.on('message', function (msg) {
+        console.log(msg)
+    })
+    
 });
 
 app.get('/', function (req, res) {

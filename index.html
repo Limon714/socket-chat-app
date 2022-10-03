@@ -8,14 +8,22 @@
 </head>
 <body>
     <h1 id="work">Something Big is Coming</h1>
-
+       <br>
+       <input type="text" id="name">
+       <br>
+       <button onclick="sendi()">Submit</button>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let socket = io();
-        socket.on('message', function(msg){
+        // socket.on('MyStyle', function(msg){
 
-            document.getElementById('work').innerHTML = msg;
-        })
+        //     document.getElementById('work').innerHTML = msg;
+        // })
+
+        function sendi(){
+            let nm = document.getElementById('name').value;
+            socket.send(nm);
+        }
     </script>
 </body>
 </html>
