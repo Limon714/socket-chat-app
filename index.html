@@ -8,7 +8,29 @@
      <title>Document</title>
      </head>
 <body>
+<style>
+    body{
+        background-color: #333;
+    }
+    ul li{
 
+        list-style: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: aliceblue;
+    }
+    ul li:nth-child(even){
+        margin-left: 300px;
+        color: rgb(228, 172, 19);
+        margin-bottom: 20px;
+    }
+    #msg{
+        width: 450px;
+    }
+    .padd{
+        margin-top: 300px;
+    }
+</style>
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 col-lg-6">
@@ -22,10 +44,9 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 col-lg-6">
-            <div class="p-5">
+            <div class="p-5 d-inline-flex padd">
                 <input type="text" name="" id="msg" class="form-control">
-                <br>
-                <button onclick="sendMessage()" class="btn btn-primary ms-5"> Send</button>
+                <button onclick="sendMessage()" class="btn btn-dark ms-2"> Send</button>
             </div>
         </div>
     </div>
@@ -40,7 +61,8 @@
            
         function sendMessage(){
             let msg = document.getElementById('msg').value;
-            socket.emit('MyEvent', msg)
+            socket.emit('MyEvent', msg);
+            document.getElementById('msg').value ="";
         }
 
 
