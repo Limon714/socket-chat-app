@@ -12,6 +12,10 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log("Disconnected")
     })
+
+    setTimeout(function () {
+        socket.send("Subscribe to FWT")
+    }, 5000)
 });
 
 app.get('/', function (req, res) {
