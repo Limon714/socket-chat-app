@@ -4,18 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.2/js/bootstrap.min.js" integrity="sha512-5BqtYqlWfJemW5+v+TZUs22uigI8tXeVah5S/1Z6qBLVO7gakAOtkOzUtgq6dsIo5c0NJdmGPs0H9I+2OHUHVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <title>Document</title>
+     </head>
 <body>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="p-5">
+               <ul id="msghis"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="p-5">
+                <input type="text" name="" id="msg" class="form-control">
+                <br>
+                <button onclick="sendMessage()" class="btn btn-primary ms-5"> Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
    
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        let socket = io("/sell");
-            socket.on('MyEvent', function(mes){
-                document.write(mes)
-            })
+        let socket = io();
+           
+        function sendMessage(){
+            let msg = document.getElementById('msg').value;
+            socket.emit('MyEvent', msg)
+        }
+
+
+        socket.on('chat-transfer', function(msg){
+            let listItem = document.createElement('li')
+            listItem.textContent = msg
+            let mess = document.getElementById('msghis');
+            mess.appendChild(listItem)
+        })
+
         // }
     </script>
+    
 </body>
 </html>
