@@ -7,13 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Something Big is Coming</h1>
+    <h1 id="work">Something Big is Coming</h1>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let socket = io();
         socket.on('message', function(msg){
-            document.write(msg)
+
+            document.getElementById('work').innerHTML = msg;
         })
     </script>
 </body>

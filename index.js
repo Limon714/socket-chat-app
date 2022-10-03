@@ -13,9 +13,11 @@ io.on('connection', function (socket) {
         console.log("Disconnected")
     })
 
-    setTimeout(function () {
-        socket.send("Subscribe to FWT")
-    }, 5000)
+    setInterval(function () {
+        let t = new Date();
+        let d = t.getTime();
+        socket.send("Changes : " + d + "<br>")
+    }, 500)
 });
 
 app.get('/', function (req, res) {
