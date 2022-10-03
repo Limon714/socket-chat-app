@@ -6,17 +6,18 @@ const expressServer = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(expressServer);
 
-io.on('connection', function (socket) {
+
+let buy = io.of("/buy");
+buy.on('connection', function (socket) {
     console.log("New user connected")
+    buy.emit('MyEvent', "Hello Limon")
+    
+});
 
-    // socket.on('disconnect', function () {
-    //     console.log("Disconnected")
-    // })
-    // setTimeout(function () {
-    //     socket.emit('MyStyle', 'Learn with Limon')
-    // }, 4000)
-
-    io.sockets.emit('MyEvent', "Hello Limon")
+let sell = io.of("/sell");
+sell.on('connection', function (socket) {
+    console.log("New user Disconnected")
+    sell.emit('MyEvent', "Hello Selling")
     
 });
 
